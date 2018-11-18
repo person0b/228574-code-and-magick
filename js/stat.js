@@ -31,7 +31,9 @@ var getMaxElements = function (arr) {
   var maxElement = arr[0];
 
   for (var i = 0; i < arr.length; i++) {
-    maxElement = arr[i] > maxElement ? arr[i] : maxElement;
+    if (arr[i] > maxElement) {
+      maxElement = arr[i];
+    }
   }
 
   return maxElement;
