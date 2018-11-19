@@ -78,11 +78,11 @@ window.renderStatistics = function (ctx, names, times) {
       var timeY = CLOUD_Y + CLOUD_HEIGHT - CLOUD_GAP * 3 - FONT_GAP * 2 - barHeight;
       var barY = CLOUD_Y + CLOUD_HEIGHT - CLOUD_GAP * 2 - FONT_GAP - barHeight;
 
+      ctx.fillStyle = TEXT_COLOR;
       ctx.fillText(names[p], getBarX(p), nameY);
       ctx.fillText(times[p], getBarX(p), timeY);
       ctx.fillStyle = getBarColor(names[p]);
       ctx.fillRect(getBarX(p), barY, BAR_WIDTH, barHeight);
-      ctx.fillStyle = TEXT_COLOR;
     }
   }
 };
