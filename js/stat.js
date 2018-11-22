@@ -14,8 +14,9 @@ var BAR_YOUR_COLOR = 'rgba(255, 0, 0, 1)';
 var FONT = '16px PT Mono';
 var BASELINE = 'hanging';
 var FONT_GAP = 16;
-var TEXT = ['Ура вы победили!', 'Список результатов:'];
+var TEXTS = ['Ура вы победили!', 'Список результатов:'];
 var TEXT_COLOR = '#000';
+var CURRENT_PLAYER = 'Вы';
 
 
 var getMaxElement = function (arr) {
@@ -51,7 +52,7 @@ window.renderStatistics = function (ctx, names, times) {
   };
 
   var getBarColor = function (player) {
-    return player === 'Вы' ? BAR_YOUR_COLOR : 'hsl(230, ' + (Math.random() * 100).toString() + '%, 50%)';
+    return player === CURRENT_PLAYER ? BAR_YOUR_COLOR : 'hsl(230, ' + (Math.random() * 100).toString() + '%, 50%)';
   };
 
   renderCloud(CLOUD_X + CLOUD_GAP, CLOUD_Y + CLOUD_GAP, SHADOW_COLOR);
@@ -60,9 +61,9 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.font = FONT;
   ctx.textBaseline = BASELINE;
 
-  for (var i = 0; i < TEXT.length; i++) {
+  for (var i = 0; i < TEXTS.length; i++) {
     ctx.fillStyle = TEXT_COLOR;
-    ctx.fillText(TEXT[i], CLOUD_X + CLOUD_GAP * 2, CLOUD_Y + CLOUD_GAP * 1.5 + FONT_GAP * i);
+    ctx.fillText(TEXTS[i], CLOUD_X + CLOUD_GAP * 2, CLOUD_Y + CLOUD_GAP * 1.5 + FONT_GAP * i);
   }
 
   for (var t = 0; t < times.length; t++) {
