@@ -58,7 +58,7 @@ var getRandomInt = function (min, max) {
 
 var getValue = function (arr) {
   return arr[getRandomInt(0, arr.length)];
-}
+};
 
 var createWizard = function (namesArr, surnamesArr, coatColorsArr, eyesColorsArr) {
   var wizard = {};
