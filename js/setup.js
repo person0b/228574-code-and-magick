@@ -52,19 +52,19 @@ var setupWindow = document.querySelector(PageElements.SETUP);
 var similarWizardTemplate = document.querySelector(PageElements.TEMPLATE).content.querySelector(PageElements.ITEM);
 var similarListElement = document.querySelector(PageElements.LIST);
 
-var getRandomInt = function (min, max) {
+var getRandomFromInterval = function (min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
-var getValue = function (arr) {
-  return arr[getRandomInt(0, arr.length)];
+var getRandomElement = function (arr) {
+  return arr[getRandomFromInterval(0, arr.length)];
 };
 
 var createWizard = function (namesArr, surnamesArr, coatColorsArr, eyesColorsArr) {
   var wizard = {};
-  wizard.name = getValue(namesArr) + ' ' + getValue(surnamesArr);
-  wizard.coatColor = getValue(coatColorsArr);
-  wizard.eyesColor = getValue(eyesColorsArr);
+  wizard.name = getRandomElement(namesArr) + ' ' + getRandomElement(surnamesArr);
+  wizard.coatColor = getRandomElement(coatColorsArr);
+  wizard.eyesColor = getRandomElement(eyesColorsArr);
   return wizard;
 };
 
