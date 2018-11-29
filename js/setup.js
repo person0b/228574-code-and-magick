@@ -121,7 +121,7 @@ var renderWizard = function (wizard) {
 };
 
 var onPopupEscPress = function (evt) {
-  if (evt.keyCode === Key.ESC) {
+  if (evt.keyCode === Key.ESC && document.activeElement !== setupInputName) {
     closePopup();
   }
 };
@@ -138,8 +138,6 @@ var openPopup = function () {
 
   setup.classList.remove(ClassName.HIDDEN);
 
-  setupInputName.addEventListener('focus', onInputNameFocus);
-  setupInputName.addEventListener('blur', onInputNameBlur);
   document.addEventListener('keydown', onPopupEscPress);
   setupCoat.addEventListener('click', onCoatClick);
   setupEyes.addEventListener('click', onEyesClick);
@@ -149,8 +147,6 @@ var openPopup = function () {
 var closePopup = function () {
   setup.classList.add(ClassName.HIDDEN);
 
-  setupInputName.removeEventListener('focus', onInputNameFocus);
-  setupInputName.removeEventListener('blur', onInputNameBlur);
   document.removeEventListener('keydown', onPopupEscPress);
   setupCoat.removeEventListener('click', onCoatClick);
   setupEyes.removeEventListener('click', onEyesClick);
