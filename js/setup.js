@@ -158,21 +158,21 @@ var selectedColors = {
 };
 
 var onCoatClick = function () {
-  coatPreview.style.fill = COAT_COLORS[selectedColors.coat % COAT_COLORS.length];
-  coatInput.value = COAT_COLORS[selectedColors.coat % COAT_COLORS.length];
-  selectedColors.coat++;
+  coatPreview.style.fill = COAT_COLORS[selectedColors.coat];
+  coatInput.value = COAT_COLORS[selectedColors.coat];
+  selectedColors.coat = (selectedColors.coat + 1) % COAT_COLORS.length;
 };
 
 var onEyesClick = function () {
-  eyesPreview.style.fill = EYES_COLORS[selectedColors.eyes % EYES_COLORS.length];
-  eyesInput.value = EYES_COLORS[selectedColors.eyes % EYES_COLORS.length];
-  selectedColors.eyes++;
+  eyesPreview.style.fill = EYES_COLORS[selectedColors.eyes];
+  eyesInput.value = EYES_COLORS[selectedColors.eyes];
+  selectedColors.eyes = (selectedColors.eyes + 1) % EYES_COLORS.length;
 };
 
 var onFireballClick = function () {
-  fireballPreview.style.background = FIREBALL_COLORS[selectedColors.fireball % FIREBALL_COLORS.length];
-  fireballInput.value = FIREBALL_COLORS[selectedColors.fireball % FIREBALL_COLORS.length];
-  selectedColors.fireball++;
+  fireballPreview.style.background = FIREBALL_COLORS[selectedColors.fireball];
+  fireballInput.value = FIREBALL_COLORS[selectedColors.fireball];
+  selectedColors.fireball = (selectedColors.fireball + 1) % FIREBALL_COLORS.length;
 };
 
 var onNameInputValidity = function (evt) {
