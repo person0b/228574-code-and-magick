@@ -60,7 +60,8 @@ var PageElements = {
   ITEM: '.setup-similar-item',
   LABEL: '.setup-similar-label',
   SIMILAR_COAT: '.wizard-coat',
-  SIMILAR_EYES: '.wizard-eyes'
+  SIMILAR_EYES: '.wizard-eyes',
+  USER_PIC: '.upload'
 };
 var ClassName = {
   HIDDEN: 'hidden'
@@ -84,9 +85,15 @@ var fireballInput = setup.querySelector(PageElements.INPUT_FIREBALL);
 var coatPreview = setup.querySelector(PageElements.SETUP_COAT);
 var eyesPreview = setup.querySelector(PageElements.SETUP_EYES);
 var fireballPreview = setup.querySelector(PageElements.SETUP_FIREBALL);
+var userPic = setup.querySelector(PageElements.USER_PIC);
 
 var similarWizardTemplate = document.querySelector(PageElements.TEMPLATE).content.querySelector(PageElements.ITEM);
 var similarListElement = document.querySelector(PageElements.LIST);
+
+var defaultSetupCoords = {
+  x: setup.style.left,
+  y: setup.style.top
+};
 
 var getRandomFromInterval = function (min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -131,7 +138,6 @@ var onPopupEscPress = function (evt) {
 };
 
 var openPopup = function () {
-
   setup.classList.remove(ClassName.HIDDEN);
 
   document.addEventListener('keydown', onPopupEscPress);
@@ -139,16 +145,19 @@ var openPopup = function () {
   eyesPreview.addEventListener('click', onEyesClick);
   fireballPreview.addEventListener('click', onFireballClick);
   nameInput.addEventListener('input', onNameInputValidity);
+  userPic.addEventListener('mousedown', onUserPicMousedown);
 };
 
 var closePopup = function () {
   setup.classList.add(ClassName.HIDDEN);
+  resetSetupPosition(defaultSetupCoords);
 
   document.removeEventListener('keydown', onPopupEscPress);
   coatPreview.removeEventListener('click', onCoatClick);
   eyesPreview.removeEventListener('click', onEyesClick);
   fireballPreview.removeEventListener('click', onFireballClick);
   nameInput.removeEventListener('input', onNameInputValidity);
+  userPic.removeEventListener('mousedown', onUserPicMousedown);
 };
 
 var selectedColors = {
@@ -184,6 +193,61 @@ var onNameInputValidity = function (evt) {
   } else {
     target.setCustomValidity('');
   }
+};
+
+var onUserPicMousedown = function (evt) {
+  evt.preventDefault();
+
+  var startCoords = {
+    x: evt.clientX,
+    y: evt.clientY
+  };
+
+  var dragged = false;
+
+  var onMouseMove = function (moveEvt) {
+    moveEvt.preventDefault();
+
+    var shift = {
+      x: startCoords.x - moveEvt.clientX,
+      y: startCoords.y - moveEvt.clientY
+    };
+
+    if (shift.x > 1 || shift.x < -1 || shift.y > 1 || shift.y < -1) {
+      dragged = true;
+    }
+
+    startCoords = {
+      x: moveEvt.clientX,
+      y: moveEvt.clientY
+    };
+
+    setup.style.top = (setup.offsetTop - shift.y) + 'px';
+    setup.style.left = (setup.offsetLeft - shift.x) + 'px';
+  };
+
+  var onMouseUp = function (upEvt) {
+    upEvt.preventDefault();
+
+    if (dragged) {
+      var onClickPreventDefault = function (clickEvt) {
+        clickEvt.preventDefault();
+        userPic.removeEventListener('click', onClickPreventDefault);
+      };
+      userPic.addEventListener('click', onClickPreventDefault);
+    }
+
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+  };
+
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', onMouseUp);
+};
+
+var resetSetupPosition = function (coords) {
+  setup.style.top = coords.y;
+  setup.style.left = coords.x;
 };
 
 var wizards = addWizards(WIZARDS_COUNT);
