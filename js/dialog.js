@@ -6,9 +6,6 @@
     CLOSE_BUTTON: '.setup-close',
     NAME_INPUT: '.setup-user-name'
   };
-  var ClassNames = {
-    HIDDEN: 'hidden'
-  };
   var KeyCodes = {
     ESC: 27,
     ENTER: 13
@@ -24,7 +21,7 @@
   var fireball = window.editFireball.fireball;
 
   var openDialog = function () {
-    dialog.classList.remove(ClassNames.HIDDEN);
+    dialog.classList.remove(window.utils.classNames.HIDDEN);
 
     document.addEventListener('keydown', onDialogEscPress);
     closeButton.addEventListener('click', closeDialog);
@@ -37,7 +34,7 @@
   };
 
   var closeDialog = function () {
-    dialog.classList.add(ClassNames.HIDDEN);
+    dialog.classList.add(window.utils.classNames.HIDDEN);
     window.dragDialog.resetDialogPosition();
 
     document.removeEventListener('keydown', onDialogEscPress);
@@ -70,4 +67,8 @@
 
   openButton.addEventListener('click', openDialog);
   openButton.addEventListener('keydown', onOpenButtonEnterPress);
+
+  window.dialog = {
+    close: closeDialog
+  };
 })();
