@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  var ClassNames = {
+  var ClassName = {
     HIDDEN: 'hidden'
   };
 
@@ -14,7 +14,7 @@
   };
 
   window.utils = {
-    classNames: ClassNames,
+    classNames: ClassName,
     getRandomElement: getRandomElement
   };
 })();

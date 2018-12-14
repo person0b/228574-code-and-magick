@@ -1,21 +1,21 @@
 'use strict';
 
 (function () {
-  var Selectors = {
+  var Selector = {
     OPEN_BUTTON: '.setup-open',
     CLOSE_BUTTON: '.setup-close',
     NAME_INPUT: '.setup-user-name'
   };
-  var KeyCodes = {
+  var KeyCode = {
     ESC: 27,
     ENTER: 13
   };
 
   var dialog = window.data.dialog;
-  var openButton = document.querySelector(Selectors.OPEN_BUTTON);
-  var closeButton = dialog.querySelector(Selectors.CLOSE_BUTTON);
+  var openButton = document.querySelector(Selector.OPEN_BUTTON);
+  var closeButton = dialog.querySelector(Selector.CLOSE_BUTTON);
   var dialogHandle = window.dragDialog.handle;
-  var nameInput = dialog.querySelector(Selectors.NAME_INPUT);
+  var nameInput = dialog.querySelector(Selector.NAME_INPUT);
   var coat = window.editCoat.coat;
   var eyes = window.editEyes.eyes;
   var fireball = window.editFireball.fireball;
@@ -48,7 +48,7 @@
   };
 
   var onDialogEscPress = function (evt) {
-    if (evt.keyCode === KeyCodes.ESC && document.activeElement !== nameInput) {
+    if (evt.keyCode === KeyCode.ESC && document.activeElement !== nameInput) {
       closeDialog();
     }
   };

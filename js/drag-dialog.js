@@ -1,12 +1,12 @@
 'use strict';
 
 (function () {
-  var Selectors = {
+  var Selector = {
     HANDLE: '.upload'
   };
 
   var dialog = window.data.dialog;
-  var handle = dialog.querySelector(Selectors.HANDLE);
+  var handle = dialog.querySelector(Selector.HANDLE);
 
   var defaultDialogCoords = {
     x: dialog.style.left,
