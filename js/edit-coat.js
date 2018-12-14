@@ -15,11 +15,13 @@
   var onCoatClick = function () {
     preview.style.fill = COLORS[selectedColors];
     input.value = COLORS[selectedColors];
+    window.sortSimilarWizards.onCoatChange(COLORS[selectedColors]);
     selectedColors = (selectedColors + 1) % COLORS.length;
   };
 
   window.editCoat = {
     coat: preview,
+    color: input.value,
     onCoatClick: onCoatClick
   };
 })();

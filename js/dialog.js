@@ -54,13 +54,13 @@
   };
 
   var onOpenButtonEnterPress = function (evt) {
-    if (evt.keyCode === KeyCodes.ENTER) {
+    if (evt.keyCode === KeyCode.ENTER) {
       openDialog();
     }
   };
 
   var onCloseButtonEnterPress = function (evt) {
-    if (evt.keyCode === KeyCodes.ENTER) {
+    if (evt.keyCode === KeyCode.ENTER) {
       closeDialog();
     }
   };

@@ -14,7 +14,6 @@
     HIDDEN: 'hidden'
   };
   var WIZARDS_COUNT = 4;
-  var ERROR_STYLE = 'margin: 10px auto; font-size: 30px; text-align: center; color: white; background-color: red;';
 
   var similarWizardsBlock = document.querySelector(Selector.BLOCK);
   var wizardTemplate = document.querySelector(Selector.TEMPLATE).content.querySelector(Selector.ITEM);
@@ -31,20 +30,15 @@
     return wizardElement;
   };
 
-  var addWizards = function (wizardsData) {
+  window.renderSimilarWizards = function (wizardsData) {
+    while (wizardsList.firstChild) {
+      wizardsList.removeChild(wizardsList.firstChild);
+    }
     for (var i = 0; i < WIZARDS_COUNT; i++) {
       wizardsFragment.appendChild(renderWizard(wizardsData[i]));
     }
     wizardsList.appendChild(wizardsFragment);
   };
 
-  var wizardsDataError = function (errorMessage) {
-    var element = document.createElement('div');
-    element.style = ERROR_STYLE;
-    element.textContent = errorMessage;
-    wizardsList.insertAdjacentElement('afterend', element);
-  };
-
-  window.backend.load(addWizards, wizardsDataError);
   similarWizardsBlock.classList.remove(ClassName.HIDDEN);
 })();

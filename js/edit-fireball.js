@@ -20,6 +20,7 @@
 
   window.editFireball = {
     fireball: preview,
+    color: input.value,
     onFireballClick: onFireballClick
   };
 })();

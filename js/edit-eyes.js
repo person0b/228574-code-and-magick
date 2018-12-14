@@ -15,11 +15,13 @@
   var onEyesClick = function () {
     preview.style.fill = COLORS[selectedColors];
     input.value = COLORS[selectedColors];
+    window.sortSimilarWizards.onEyesChange(COLORS[selectedColors]);
     selectedColors = (selectedColors + 1) % COLORS.length;
   };
 
   window.editEyes = {
     eyes: preview,
+    color: input.value,
     onEyesClick: onEyesClick
   };
 })();
