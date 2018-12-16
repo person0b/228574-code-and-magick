@@ -10,7 +10,7 @@
     LOAD: 'Не получилось загрузить',
     SAVE: 'Не получилось сохранить',
     ERROR: 'Произошла ошибка соединения',
-    TIMEOUT: 'Запрос не успел выполниться за ' + ServerParameter.TIMEOUT + 'мс'
+    TIMEOUT: 'Запрос не успел выполниться за ' + ServerParameter.TIMEOUT + ' мс'
   };
 
   var load = function (onLoad, onError) {
@@ -55,7 +55,7 @@
       onError(ErrorMessage.TIMEOUT);
     });
 
-    xhr.timeout = 10000;
+    xhr.timeout = ServerParameter.TIMEOUT;
 
     xhr.open('POST', URL);
     xhr.send(data);

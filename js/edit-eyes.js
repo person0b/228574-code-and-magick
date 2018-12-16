@@ -8,20 +8,20 @@
   var COLORS = window.data.eyesColors;
 
   var dialog = window.data.dialog;
-  var input = dialog.querySelector(Selector.INPUT);
-  var preview = dialog.querySelector(Selector.PREVIEW);
+  var inputEyesColor = dialog.querySelector(Selector.INPUT);
+  var previewEyes = dialog.querySelector(Selector.PREVIEW);
   var selectedColors = 1;
 
   var onEyesClick = function () {
-    preview.style.fill = COLORS[selectedColors];
-    input.value = COLORS[selectedColors];
+    previewEyes.style.fill = COLORS[selectedColors];
+    inputEyesColor.value = COLORS[selectedColors];
     window.sortSimilarWizards.onEyesChange(COLORS[selectedColors]);
     selectedColors = (selectedColors + 1) % COLORS.length;
   };
 
   window.editEyes = {
-    eyes: preview,
-    color: input.value,
+    eyes: previewEyes,
+    color: inputEyesColor.value,
     onEyesClick: onEyesClick
   };
 })();

@@ -3,6 +3,10 @@
 (function () {
   var ERROR_STYLE = 'margin: 10px auto; font-size: 30px; text-align: center; color: white; background-color: red;';
   var WIZARDS_LIST_SELECTOR = '.setup-similar-list';
+  var SimilarityPoint = {
+    VERY: 2,
+    MEDIUM: 1
+  };
 
   var wizardsList = document.querySelector(WIZARDS_LIST_SELECTOR);
 
@@ -17,33 +21,28 @@
     var rank = 0;
 
     if (wizard.colorCoat === playerColor.coat) {
-      rank += 2;
+      rank += SimilarityPoint.VERY;
     }
     if (wizard.colorEyes === playerColor.eyes) {
-      rank += 1;
+      rank += SimilarityPoint.MEDIUM;
     }
 
     return rank;
   };
 
-  var namesComparator = function (left, right) {
-    if (left > right) {
-      return 1;
-    } else if (left < right) {
-      return -1;
-    } else {
-      return 0;
-    }
+  var namesComparator = function (a, b) {
+    return (a - b);
   };
 
   var updateWizards = function () {
-    window.renderSimilarWizards(wizards.sort(function (left, right) {
-      var rankDiff = getRank(right) - getRank(left);
+    var sortedWizards = wizards.sort(function (a, b) {
+      var rankDiff = getRank(b) - getRank(a);
       if (rankDiff === 0) {
-        rankDiff = namesComparator(left.name, right.name);
+        rankDiff = namesComparator(a.name, b.name);
       }
       return rankDiff;
-    }));
+    });
+    window.renderSimilarWizards(sortedWizards);
   };
 
   var onWizardCoatChange = window.utils.debounce(function (color) {
