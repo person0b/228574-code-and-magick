@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  var CloudParameters = {
+  var CloudParameter = {
     X_POSITION: 100,
     Y_POSITION: 10,
     WIDTH: 420,
@@ -11,13 +11,13 @@
     SHADOW_COLOR: 'rgba(0, 0, 0, 0.7)'
   };
 
-  var BarParameters = {
+  var BarParameter = {
     WIDTH: 40,
     HEIGTH: 150,
     GAP: 50
   };
 
-  var TextParameters = {
+  var TextParameter = {
     FONT: '16px PT Mono',
     BASELINE: 'hanging',
     GAP: 16,
@@ -47,34 +47,34 @@
       ctx.fillStyle = color;
       ctx.beginPath();
       ctx.moveTo(x, y);
-      ctx.lineTo(x + CloudParameters.WIDTH / 2, y + CloudParameters.GAP);
-      ctx.lineTo(x + CloudParameters.WIDTH, y);
-      ctx.lineTo(x + CloudParameters.WIDTH - CloudParameters.GAP, y + CloudParameters.HEIGTH / 2);
-      ctx.lineTo(x + CloudParameters.WIDTH, y + CloudParameters.HEIGTH);
-      ctx.lineTo(x + CloudParameters.WIDTH / 2, y + CloudParameters.HEIGTH - CloudParameters.GAP);
-      ctx.lineTo(x, y + CloudParameters.HEIGTH);
-      ctx.lineTo(x + CloudParameters.GAP, y + CloudParameters.HEIGTH / 2);
+      ctx.lineTo(x + CloudParameter.WIDTH / 2, y + CloudParameter.GAP);
+      ctx.lineTo(x + CloudParameter.WIDTH, y);
+      ctx.lineTo(x + CloudParameter.WIDTH - CloudParameter.GAP, y + CloudParameter.HEIGTH / 2);
+      ctx.lineTo(x + CloudParameter.WIDTH, y + CloudParameter.HEIGTH);
+      ctx.lineTo(x + CloudParameter.WIDTH / 2, y + CloudParameter.HEIGTH - CloudParameter.GAP);
+      ctx.lineTo(x, y + CloudParameter.HEIGTH);
+      ctx.lineTo(x + CloudParameter.GAP, y + CloudParameter.HEIGTH / 2);
       ctx.lineTo(x, y);
       ctx.fill();
     };
 
     var getBarX = function (multiplier) {
-      return CloudParameters.X_POSITION + BarParameters.GAP + (BarParameters.WIDTH + BarParameters.GAP) * multiplier;
+      return CloudParameter.X_POSITION + BarParameter.GAP + (BarParameter.WIDTH + BarParameter.GAP) * multiplier;
     };
 
     var getBarColor = function (player) {
       return player === CurrentPlayer.NAME ? CurrentPlayer.COLOR : 'hsl(230, ' + (Math.random() * 100).toString() + '%, 50%)';
     };
 
-    renderCloud(CloudParameters.X_POSITION + CloudParameters.GAP, CloudParameters.Y_POSITION + CloudParameters.GAP, CloudParameters.SHADOW_COLOR);
-    renderCloud(CloudParameters.X_POSITION, CloudParameters.Y_POSITION, CloudParameters.COLOR);
+    renderCloud(CloudParameter.X_POSITION + CloudParameter.GAP, CloudParameter.Y_POSITION + CloudParameter.GAP, CloudParameter.SHADOW_COLOR);
+    renderCloud(CloudParameter.X_POSITION, CloudParameter.Y_POSITION, CloudParameter.COLOR);
 
-    ctx.font = TextParameters.FONT;
-    ctx.textBaseline = TextParameters.BASELINE;
+    ctx.font = TextParameter.FONT;
+    ctx.textBaseline = TextParameter.BASELINE;
 
-    for (var i = 0; i < TextParameters.HEAD_STRINGS.length; i++) {
-      ctx.fillStyle = TextParameters.COLOR;
-      ctx.fillText(TextParameters.HEAD_STRINGS[i], CloudParameters.X_POSITION + CloudParameters.GAP * 2, CloudParameters.Y_POSITION + CloudParameters.GAP * 1.5 + TextParameters.GAP * i);
+    for (var i = 0; i < TextParameter.HEAD_STRINGS.length; i++) {
+      ctx.fillStyle = TextParameter.COLOR;
+      ctx.fillText(TextParameter.HEAD_STRINGS[i], CloudParameter.X_POSITION + CloudParameter.GAP * 2, CloudParameter.Y_POSITION + CloudParameter.GAP * 1.5 + TextParameter.GAP * i);
     }
 
     for (var t = 0; t < times.length; t++) {
@@ -85,16 +85,16 @@
 
     for (var p = 0; p < names.length; p++) {
       if (names[p] !== undefined || times[p] !== undefined) {
-        var barHeight = (BarParameters.HEIGTH * times[p]) / maxTime;
-        var nameY = CloudParameters.Y_POSITION + CloudParameters.HEIGTH - CloudParameters.GAP * 1.5 - TextParameters.GAP;
-        var timeY = CloudParameters.Y_POSITION + CloudParameters.HEIGTH - CloudParameters.GAP * 3 - TextParameters.GAP * 2 - barHeight;
-        var barY = CloudParameters.Y_POSITION + CloudParameters.HEIGTH - CloudParameters.GAP * 2 - TextParameters.GAP - barHeight;
+        var barHeight = (BarParameter.HEIGTH * times[p]) / maxTime;
+        var nameY = CloudParameter.Y_POSITION + CloudParameter.HEIGTH - CloudParameter.GAP * 1.5 - TextParameter.GAP;
+        var timeY = CloudParameter.Y_POSITION + CloudParameter.HEIGTH - CloudParameter.GAP * 3 - TextParameter.GAP * 2 - barHeight;
+        var barY = CloudParameter.Y_POSITION + CloudParameter.HEIGTH - CloudParameter.GAP * 2 - TextParameter.GAP - barHeight;
 
-        ctx.fillStyle = TextParameters.COLOR;
+        ctx.fillStyle = TextParameter.COLOR;
         ctx.fillText(names[p], getBarX(p), nameY);
         ctx.fillText(times[p], getBarX(p), timeY);
         ctx.fillStyle = getBarColor(names[p]);
-        ctx.fillRect(getBarX(p), barY, BarParameters.WIDTH, barHeight);
+        ctx.fillRect(getBarX(p), barY, BarParameter.WIDTH, barHeight);
       }
     }
   };

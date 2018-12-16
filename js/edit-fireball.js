@@ -1,25 +1,26 @@
 'use strict';
 
 (function () {
-  var Selectors = {
+  var Selector = {
     INPUT: '[name="fireball-color"]',
     PREVIEW: '.setup-fireball-wrap'
   };
   var COLORS = window.data.fireballColors;
 
   var dialog = window.data.dialog;
-  var input = dialog.querySelector(Selectors.INPUT);
-  var preview = dialog.querySelector(Selectors.PREVIEW);
+  var inputFireballColor = dialog.querySelector(Selector.INPUT);
+  var previewFireball = dialog.querySelector(Selector.PREVIEW);
   var selectedColors = 1;
 
   var onFireballClick = function () {
-    preview.style.background = COLORS[selectedColors];
-    input.value = COLORS[selectedColors];
+    previewFireball.style.background = COLORS[selectedColors];
+    inputFireballColor.value = COLORS[selectedColors];
     selectedColors = (selectedColors + 1) % COLORS.length;
   };
 
   window.editFireball = {
-    fireball: preview,
+    fireball: previewFireball,
+    color: inputFireballColor.value,
     onFireballClick: onFireballClick
   };
 })();

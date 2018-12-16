@@ -1,14 +1,14 @@
 'use strict';
 
 (function () {
-  var Selectors = {
+  var Selector = {
     FORM: '.setup-wizard-form',
-    BUTTOM: '.setup-submit'
+    BUTTON: '.setup-submit'
   };
 
   var dialog = window.data.dialog;
-  var form = dialog.querySelector(Selectors.FORM);
-  var button = dialog.querySelector(Selectors.BUTTOM);
+  var form = dialog.querySelector(Selector.FORM);
+  var button = dialog.querySelector(Selector.BUTTON);
 
   var editButton = function (text, color) {
     button.textContent = text;
