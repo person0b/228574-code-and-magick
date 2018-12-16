@@ -35,13 +35,16 @@
   };
 
   var updateWizards = function () {
-    var sortedWizards = wizards.sort(function (a, b) {
+    var sortedWizards = wizards.slice();
+
+    sortedWizards.sort(function (a, b) {
       var rankDiff = getRank(b) - getRank(a);
       if (rankDiff === 0) {
         rankDiff = namesComparator(a.name, b.name);
       }
       return rankDiff;
     });
+
     window.renderSimilarWizards(sortedWizards);
   };
 
